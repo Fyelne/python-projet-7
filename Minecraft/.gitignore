@@ -1,0 +1,70 @@
+# =========================
+# Minecraft server files
+# =========================
+
+# Fichiers monde (très lourds)
+world/
+world_nether/
+world_the_end/
+
+# Logs
+logs/
+*.log
+
+# Données joueurs
+usercache.json
+usernamecache.json
+banned-players.json
+banned-ips.json
+ops.json
+whitelist.json
+
+# Propriétés serveur (contient mot de passe RCON)
+server.properties
+
+*.yml
+.console_history
+version_history.json
+# Plugins (si Paper / Spigot)
+plugins/
+
+# Cache & temporaires
+cache/
+libraries/
+versions/
+
+# Backups
+backups/
+*.zip
+
+# =========================
+# Java
+# =========================
+hs_err_pid*
+*.class
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Python (ton projet IA)
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+env/
+venv/
+
+# Variables d’environnement
+.env
+
+# =========================
+# IDE
+# =========================
+.vscode/
+.idea/
+*.iml
