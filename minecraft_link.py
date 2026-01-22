@@ -1,9 +1,15 @@
 from time import time
+import time
 from mcrcon import MCRcon
+from dotenv import load_dotenv
+import os
 
-RCON_HOST = "localhost"
-RCON_PORT = 25575
-RCON_PASSWORD = "pythonmc"
+# Charger les variables d'environnement
+load_dotenv()
+
+RCON_HOST = os.getenv("RCON_HOST")
+RCON_PORT = int(os.getenv("RCON_PORT"))
+RCON_PASSWORD = os.getenv("RCON_PASSWORD")
 
 def send_command(command):
     with MCRcon(RCON_HOST, RCON_PASSWORD, port=RCON_PORT) as mcr:
@@ -33,7 +39,6 @@ def place_block(x, y, z, block_type="stone"):
 def get_player_position():
     command = "/tp @p ~ ~ ~"
     response = send_command(command)
-    # Exemple de réponse: "Teleported player to 100 64 200"
     try:
         parts = response.split()
         x, y, z = map(int, parts[-3:])
