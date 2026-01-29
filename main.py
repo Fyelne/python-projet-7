@@ -4,6 +4,7 @@ Intègre la reconnaissance de gestes avec la connexion Minecraft
 """
 
 import logging
+import threading
 import hand as hg
 import minecraft_link as ml
 
@@ -16,16 +17,12 @@ logger = logging.getLogger(__name__)
 
 
 def main():
-    """Fonction principale du projet"""
     logger.info("Démarrage de l'application...")
     
-    try:
-        # Test de connexion Minecraft
-        logger.info("Test de connexion à Minecraft...")
-        ml.test_connection()
-        
-    except Exception as e:
-        logger.warning(f"Erreur connexion RCON: {e}")
+    # Démarrer link minecraft en arrière-plan
+    logger.info("Test de connexion à Minecraft (en arrière-plan)...")
+    connection_thread = threading.Thread(target=ml.test_connection, daemon=True)
+    connection_thread.start()
     
     try:
         # Démarrer la reconnaissance de gestes
