@@ -22,9 +22,12 @@ def main():
     try:
         # Test de connexion Minecraft
         logger.info("Test de connexion à Minecraft...")
-        response = ml.test_connection()
-        #logger.info(f"Réponse serveur: {response}")
+        ml.test_connection()
         
+    except Exception as e:
+        logger.warning(f"Erreur connexion RCON: {e}")
+    
+    try:
         # Démarrer la reconnaissance de gestes
         logger.info("Initialisation de la reconnaissance de gestes...")
         hg.recognize_hand_gestures()
