@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from classes.rcon_singleton import RCONClient
 from config.controls import ControlConfig
 
 class MPRecognizer(ABC):

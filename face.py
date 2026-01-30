@@ -9,14 +9,6 @@ logger = logging.getLogger(__name__)
 
 CAM_INDEX = int(os.getenv("CAMERA_INDEX", 0))
 
-EMOTION_TO_WEATHER = {
-    "Neutral": None,
-    "Happy": "clear",
-    "Sad": "rain",
-    "Angry": "thunder",
-}
-
-
 class FaceRecognizer(MPRecognizer):
     def __init__(self):
         super().__init__()
