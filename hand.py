@@ -3,7 +3,6 @@ import cv2
 import numpy as np
 import mediapipe as mp
 from dollarpy import Recognizer, Template, Point
-import minecraft_link as ml
 
 # ---------------- Réglages ----------------
 CAM_INDEX = 0
@@ -55,7 +54,7 @@ def add_point(x, y):
     prev_xy = (x, y)
 
 
-def recognize_hand_gestures():
+def recognize_hand_gestures(mc_connect):
     """Fonction principale pour la reconnaissance de gestes avec la caméra"""
     global W, H, canvas, recording, stroke_id, points, prev_xy, last_result, last_sample_t, last_build_igloo_t
     
@@ -148,7 +147,7 @@ def recognize_hand_gestures():
             if pinch_dist is not None:
                 now = time.time()
                 if (now - last_build_igloo_t) >= 30.0:
-                    ml.build_igloo()
+                    mc_connect.build_igloo()
                     last_build_igloo_t = now
                 
                 cv2.putText(overlay, f"pinch_dist: {pinch_dist:.3f}",
