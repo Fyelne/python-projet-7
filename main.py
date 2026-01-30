@@ -4,6 +4,7 @@ Intègre la reconnaissance de gestes avec la connexion Minecraft
 """
 
 import logging
+import threading
 import hand as hg
 import face as fg  
 import minecraft_link as ml
@@ -17,7 +18,6 @@ logger = logging.getLogger(__name__)
 
 
 def main():
-    """Fonction principale du projet"""
     logger.info("Démarrage de l'application...")
     
     try:
