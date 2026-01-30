@@ -1,4 +1,5 @@
 import time
+import math
 from functools import wraps
 
 def cooldown(seconds):
@@ -16,3 +17,6 @@ def cooldown(seconds):
 
         return wrapper
     return decorator
+
+def dist(p1, p2):
+    return math.hypot(p1[0] - p2[0], p1[1] - p2[1])
