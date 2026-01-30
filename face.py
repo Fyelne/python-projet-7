@@ -1,3 +1,4 @@
+import os
 import cv2
 import mediapipe as mp
 import numpy as np
@@ -11,6 +12,8 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
+
+CAM_INDEX = int(os.getenv("CAMERA_INDEX", 0))
 
 emotions_convertion = {
     "Neutral": None,
@@ -31,7 +34,7 @@ face_mesh = mp_face_mesh.FaceMesh(
     min_tracking_confidence=0.5
 )
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(CAM_INDEX)
 
 # =====================
 # Smoothing parameters
@@ -179,31 +182,3 @@ def recognize_emotions():
 
     cap.release()
     cv2.destroyAllWindows()
-
-
-def main():
-    """Fonction principale du projet"""
-    logger.info("Démarrage de l'application...")
-    
-    try:
-        # Test de connexion Minecraft
-        logger.info("Test de connexion à Minecraft...")
-        ml.test_connection()
-        
-    except Exception as e:
-        logger.warning(f"Erreur connexion RCON: {e}")
-    
-    try:
-        # Démarrer la reconnaissance de gestes
-        logger.info("Initialisation de la reconnaissance de gestes...")
-        recognize_emotions()
-        
-    except Exception as e:
-        logger.error(f"Erreur lors de l'exécution: {e}")
-        raise
-    finally:
-        logger.info("Fermeture de l'application")
-
-
-if __name__ == "__main__":
-    main()

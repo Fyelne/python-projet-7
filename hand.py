@@ -1,3 +1,4 @@
+import os
 import time
 import cv2
 import numpy as np
@@ -6,7 +7,7 @@ from dollarpy import Recognizer, Template, Point
 import minecraft_link as ml
 
 # ---------------- Réglages ----------------
-CAM_INDEX = 1
+CAM_INDEX = int(os.getenv("CAMERA_INDEX", 0))
 #W, H = 1280, 720
 W, H = 360 , 240
 
