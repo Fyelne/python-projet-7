@@ -3,6 +3,8 @@ from mcrcon import MCRcon
 from dotenv import load_dotenv
 import os
 
+from utils.utils import cooldown
+
 class RCONClient:
     _instance = None
 
@@ -19,6 +21,8 @@ class RCONClient:
         self.rcon_port = int(os.getenv("RCON_PORT"))
         self.rcon_password = os.getenv("RCON_PASSWORD")
         self.rcon_connected = False
+
+        self.last_weather = "clear"
 
         self.try_connection()
 
@@ -76,4 +80,15 @@ class RCONClient:
         self.message("Construction d'une maison igloo...")
         command = f"execute at @p run place structure minecraft:igloo ~5 ~ ~5"
         return self.send_command(command)
+    
+    @cooldown(5)
+    def weather(self, *args):
+        if args is None or self.last_weather == args:
+            return
+
+        self.last_weather = args
+        self.message("Changement de temps...")
+        command = f"/weather {args[0]}"
+        response = self.send_command(command)
+        return response
 

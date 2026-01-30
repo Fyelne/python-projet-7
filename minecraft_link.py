@@ -4,6 +4,7 @@ import time
 from mcrcon import MCRcon
 from dotenv import load_dotenv
 import os
+from utils.utils import cooldown
 
 # Charger les variables d'environnement
 load_dotenv()
@@ -79,5 +80,15 @@ def give_item(item, quantity=1):
 def build_igloo(): 
     message("Construction d'une maison igloo...")
     command = f"execute at @p run place structure minecraft:igloo ~5 ~ ~5"
+    response = send_command(command)
+    return response
+
+@cooldown(5)
+def weather(weather_type):
+    # TODO: Check le précédent temps
+    if weather_type is None:
+        return
+    message("Changement de temps...")
+    command = f"/weather {weather_type}"
     response = send_command(command)
     return response

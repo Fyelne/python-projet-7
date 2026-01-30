@@ -1,9 +1,13 @@
 from abc import ABC, abstractmethod
-from classes.rcon_singleton import RCONClient
+from config.controls import ControlConfig
 
-class Recognizer(ABC):
+class MPRecognizer(ABC):
     def __init__(self):
-        self.rcon_client = RCONClient()
+        self.control = ControlConfig()
+        pass
+
+    @abstractmethod
+    def loop(self):
         pass
 
     @abstractmethod

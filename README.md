@@ -37,11 +37,13 @@ pip install -r requirements.txt
 ### 1. Démarrer le serveur Minecraft (optionnel)
 
 #### Linux
+
 ```sh
 ./Minecraft/start.sh
 ```
 
 #### Windows
+
 ```powershell
 .\Minecraft\start.bat
 ```
@@ -54,12 +56,12 @@ python main.py
 
 ### 3. Commandes
 
-| Commande | Action |
-|----------|--------|
-| **Pincement pouce+index** | Démarrer/arrêter le dessin |
-| `t` | Sauvegarder le tracé comme template |
-| `c` | Effacer le canvas |
-| `q` | Quitter |
+| Commande                  | Action                                         |
+|---------------------------|------------------------------------------------|
+| **Pincement pouce+index** | Démarrer/arrêter le dessin                     |
+| `t`                       | Sauvegarder le tracé comme template            |
+| `c`                       | Effacer le canvas                              |
+| `q`                       | Quitter                                        |
 
 ## Optimisations de détection
 
@@ -73,6 +75,7 @@ Le système intègre plusieurs optimisations pour une détection fluide et sans 
 ### Tolérance aux pertes de détection
 
 Quand MediaPipe perd temporairement la main (occlusion, mouvement rapide) :
+
 - Le système continue le dessin pendant **8 frames** avec la dernière position connue
 - Indicateur visuel orange pour montrer la position estimée
 - Évite les coupures brutales dans le tracé
@@ -80,6 +83,7 @@ Quand MediaPipe perd temporairement la main (occlusion, mouvement rapide) :
 ### Interpolation pour mouvements rapides
 
 Quand la main bouge très vite :
+
 - Si la distance entre 2 points dépasse **50 pixels**, des points intermédiaires sont automatiquement ajoutés
 - Garantit un trait continu même à grande vitesse
 - Fréquence d'échantillonnage de **8ms** (~125 points/seconde)
@@ -94,21 +98,21 @@ Quand la main bouge très vite :
 
 Dans `hand.py`, vous pouvez ajuster :
 
-| Paramètre | Valeur par défaut | Description |
-|-----------|-------------------|-------------|
-| `W, H` | 640, 480 | Résolution de la caméra |
-| `SAMPLE_MS` | 8 | Intervalle d'échantillonnage (ms) |
-| `SMOOTHING_BUFFER_SIZE` | 3 | Taille du buffer de lissage |
-| `POSITION_SMOOTHING_ALPHA` | 0.6 | Réactivité (0=lisse, 1=brut) |
-| `LOST_FRAMES_TOLERANCE` | 8 | Frames tolérées sans détection |
-| `MAX_POINT_DISTANCE` | 50 | Distance max avant interpolation |
-| `PINCH_START_THRESH` | 0.045 | Seuil de pincement pour démarrer |
-| `PINCH_STOP_THRESH` | 0.060 | Seuil de pincement pour arrêter |
-| `MIN_POINTS` | 30 | Points minimum pour reconnaître |
+| Paramètre                  | Défaut   | Description                       |
+|----------------------------|----------|-----------------------------------|
+| `W, H`                     | 640, 480 | Résolution de la caméra           |
+| `SAMPLE_MS`                | 8        | Intervalle d'échantillonnage (ms) |
+| `SMOOTHING_BUFFER_SIZE`    | 3        | Taille du buffer de lissage       |
+| `POSITION_SMOOTHING_ALPHA` | 0.6      | Réactivité (0=lisse, 1=brut)      |
+| `LOST_FRAMES_TOLERANCE`    | 8        | Frames tolérées sans détection    |
+| `MAX_POINT_DISTANCE`       | 50       | Distance max avant interpolation  |
+| `PINCH_START_THRESH`       | 0.045    | Seuil de pincement pour démarrer  |
+| `PINCH_STOP_THRESH`        | 0.060    | Seuil de pincement pour arrêter   |
+| `MIN_POINTS`               | 30       | Points minimum pour reconnaître   |
 
 ## Architecture
 
-```
+```md
 ├── main.py              # Point d'entrée
 ├── hand.py              # Reconnaissance de gestes
 ├── minecraft_link.py    # Connexion RCON Minecraft
