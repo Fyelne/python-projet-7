@@ -298,7 +298,8 @@ def recognize_last_drawing() -> str:
     return _last_recognized_label
 
 
-def main():
+def recognize_hand_gestures():
+    """Fonction principale pour la reconnaissance de gestes avec la caméra"""
     global _last_recognized_label, _last_score, _last_stroke
 
     cap = cv2.VideoCapture(0)
@@ -440,4 +441,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    recognize_hand_gestures()
