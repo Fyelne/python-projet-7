@@ -25,7 +25,8 @@ pip install -r requirements.txt
 #### Windows
 
 ```shell
-.\Minecraft\start.bat
+cd .\Minecraft\
+start.bat
 ```
 
 ### Lancement de la détection d'image
